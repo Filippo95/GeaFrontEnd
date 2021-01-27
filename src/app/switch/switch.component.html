@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h2 class="h2">Switch</h2>
+
+</div>
+
+<div *ngFor="let item of lasts">
+  <h3>{{item.sensor_mac}}
+    <span *ngIf="item.value==='ON'" class="badge badge-success" >{{item.value}}</span>
+    <span *ngIf="item.value==='OFF'" class="badge badge-danger" >{{item.value}}</span>
+
+  </h3>
+</div>
+<div class="border-bottom">
+</div>
+<table class="table">
+  <thead>
+  <tr>
+    <th>MAC</th><th>Status</th><th>Consumo</th><th>Costo KW/h</th><th>Today ON Hours</th><th>Today ON minutes</th><th>$</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of lasts">
+    <td>{{item.sensor_mac}}</td>
+    <td>{{item.value}}</td>
+    <td><input type="number" [(ngModel)]="item.watt" >Watt</td>
+
+    <td><input type="number" [(ngModel)]="item.costo ">$</td>
+    <td>{{(item.hourson/60/60).toPrecision(2)}}</td>
+    <td>{{(item.hourson/60).toPrecision(2)}}</td>
+    <td>{{item.watt*item.costo*item.hourson/60/60}}</td>
+  </tr>
+  </tbody>
+</table>
+<div class="border-bottom">
+</div>
+<div *ngFor="let op of options">
+  <div class="border-bottom">
+
+  <h2>{{op.legend.data}}</h2>
+  <div  echarts [options]="op" [loading]="isLoading" theme="macarons" class="demo-chart"></div>
+
+  </div>
+</div>

@@ -3,10 +3,17 @@
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { AuthGuard } from './_helpers';
+import {TemperatureComponent} from '@app/temperature/temperature.component';
+import {UmiditaComponent} from '@app/umidita/umidita.component';
+import {SwitchComponent} from '@app/switch/switch.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
+    {path: 'temperature', component: TemperatureComponent},
+  {path: 'umidita', component: UmiditaComponent},
+
+  {path: 'switch', component: SwitchComponent},
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
